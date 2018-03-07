@@ -1,0 +1,10 @@
+
+#This script is to extract private key, certificate and chain from a pfx format file.
+#Usually, pfx file will have a pass phrase.
+
+openssl pkcs12 -in subdomain.domain.com.pfx -nocerts -out pair.key -nodes
+openssl rsa -in pair.key -text > key-private.pem
+openssl pkcs12 -in subdomain.domain.com.pfx  -clcerts -nokeys -out certificate.crt
+openssl x509 -inform PEM -in certificate.crt > key-public.pem
+openssl pkcs12 -in subdomain.domain.com.pfx  -nokeys -cacerts -out cert-chain.pem
+
