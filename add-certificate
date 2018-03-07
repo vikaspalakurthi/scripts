@@ -1,0 +1,14 @@
+# Adding new Certificate Authority (CA) certs to the system-wide database of trusted CAs.
+# Platform: Rhel/CentOS 6+
+# Need Root priviliges.
+
+# Install ca-certificates and force enable update-ca-trust
+yum -y install ca-certificates
+update-ca-trust force-enable
+
+# Copy the certificate to the below folder then run the update-ca-trust extract command
+cp /tmp/Root.cer /etc/pki/ca-trust/source/anchors/
+update-ca-trust extract
+
+
+
